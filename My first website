@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Fun Facts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #999;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .fact-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            line-height: 1.6;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .fact-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .fact-number {
+            display: block;
+            font-size: 0.8em;
+            opacity: 0.9;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Fun Facts</h1>
+        <p class="subtitle">Click the button to discover something amazing!</p>
+        
+        <div class="fact-box" id="factBox">
+            Click the button to get started!
+            <span class="fact-number" id="factNumber"></span>
+        </div>
+
+        <div class="button-group">
+            <button onclick="getRandomFact()">Get Random Fact</button>
+            <button onclick="location.reload()">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        const facts = [
+            "Honey never spoils. Archaeologists have found 3,000-year-old honey in Egyptian tombs that was still edible!",
+            "Octopuses have three hearts. Two pump blood to the gills, while the third pumps it to the rest of the body.",
+            "A group of flamingos is called a 'flamboyance.'",
+            "Bananas are berries, but strawberries aren't. Botanically speaking, bananas fit the definition of berries, but strawberries don't!",
+            "Wombats poop cubes. Their droppings are shaped like cubes so they don't roll away.",
+            "Butterflies taste with their feet. They have taste receptors on their feet to determine if the leaf they land on is good to eat.",
+            "A snail can sleep for up to 3 years without eating.",
+            "Dolphins have names for each other. They use unique whistles to call and identify one another.",
+            "The shortest war in history lasted 38 minutes between Britain and Zanzibar in 1896.",
+            "Cleopatra lived closer to the invention of the iPhone than to the construction of the Great Pyramid.",
+            "Cats have over 230 bones, while humans have 206.",
+            "A day on Venus is longer than its year. Venus takes 243 Earth days to rotate on its axis but only 225 to orbit the sun.",
+            "Penguins have knees. They're hidden under their feathers!",
+            "Sloths can hold their breath longer than dolphins. They can stay underwater for up to 40 minutes!",
+            "A group of crows is called a 'murder.'",
+            "The oldest known recipe is for beer, dating back to around 4000 BC in ancient Mesopotamia.",
+            "Rats laugh when tickled. They produce ultrasonic vocalizations similar to human laughter.",
+            "Koalas have fingerprints almost identical to human fingerprints.",
+            "The Great Wall of China is not visible from space with the naked eye.",
+            "Tardigrades can survive in the vacuum of space and extreme radiation.",
+            "A Blue Whale's heart can weigh as much as an elephant.",
+            "Humans share 50% of their DNA with bananas.",
+            "An ostrich's eye is bigger than its brain.",
+            "The only mammal that can't jump is the elephant.",
+            "Jellyfish have been on Earth for over 500 million years, predating dinosaurs."
+        ];
+
+        let lastFactIndex = -1;
+
+        function getRandomFact() {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * facts.length);
+            } while (randomIndex === lastFactIndex);
+            
+            lastFactIndex = randomIndex;
+            const factBox = document.getElementById('factBox');
+            const factNumber = document.getElementById('factNumber');
+            
+            factBox.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                factBox.textContent = facts[randomIndex];
+                factNumber.textContent = `Fact ${randomIndex + 1} of ${facts.length}`;
+                factBox.style.opacity = '1';
+            }, 150);
+        }
+
+        // Display initial fact on page load
+        window.addEventListener('load', getRandomFact);
+    </script>
+</body>
+</html>
